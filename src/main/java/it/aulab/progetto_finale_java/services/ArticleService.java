@@ -21,13 +21,16 @@ import it.aulab.progetto_finale_java.repositories.UserRepository;
 public class ArticleService implements CrudService<ArticleDto, Article, Long> {
 
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Autowired
-    ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     @Autowired
-    ArticleRepository articleRepository;
+    private ArticleRepository articleRepository;
+
+    @Autowired
+    private ImageService imageService;
 
     @Override
     public List<ArticleDto> readAll() {

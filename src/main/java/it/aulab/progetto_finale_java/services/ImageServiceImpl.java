@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import it.aulab.progetto_finale_java.models.Article;
 import it.aulab.progetto_finale_java.models.Image;
+import it.aulab.progetto_finale_java.repositories.ImageRepository;
+import it.aulab.progetto_finale_java.utils.StringManipulation;
 
 import org.springframework.http.*;
 
@@ -58,14 +60,15 @@ public class ImageServiceImpl implements ImageService {
                 body.add("file", file.getBytes());
 
                 HttpHeaders headers = new HttpHeaders();
-                headers.set(HttpHeaders.CONTENT_TYPE, "image/" + extension);
-                headers.set("Authorization", "Bearer " + supabaseBucket);
+                headers.set("Content-Type", "image/" + extension);
+                headers.set("Authorization", "Bearer " + supabaseKey);
 
                 HttpEntity<byte[]> requestEntity = new HttpEntity<>(file.getBytes(), headers);
 
                 restTemplate.exchange(url, HttpMethod.POST, requestEntity, String.class);
 
                 return CompletableFuture.completedFuture(url);
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
