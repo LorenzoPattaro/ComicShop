@@ -1,6 +1,9 @@
 package it.aulab.progetto_finale_java.controllers;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -31,7 +34,15 @@ public class UserController {
     private ArticleService articleService;
 
     @GetMapping("/")
-    public String home() {
+    public String home(Model viewModel) {
+
+        List<ArticleDto> articles = articleService.readAll();
+
+        Collections.sort(articles, Comparator.comparing(ArticleDto::getPublishDate).reversed());
+        
+        List<ArticleDto> lastThreeArticles = articles.stream().limit(3).collect(Collectors.toList());
+
+        viewModel.addAttribute("articles", lastThreeArticles);
         return "home";
     }
 
