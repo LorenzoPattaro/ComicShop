@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import it.aulab.progetto_finale_java.dtos.ArticleDto;
 import it.aulab.progetto_finale_java.models.Article;
+import it.aulab.progetto_finale_java.models.Category;
 import it.aulab.progetto_finale_java.models.User;
 import it.aulab.progetto_finale_java.repositories.ArticleRepository;
 import it.aulab.progetto_finale_java.repositories.UserRepository;
@@ -93,6 +94,22 @@ public class ArticleService implements CrudService<ArticleDto, Article, Long> {
     public void delete(Long key) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    public List<ArticleDto> searchByCategory(Category category) {
+        List<ArticleDto> dtos = new ArrayList<ArticleDto>();
+        for(Article article: articleRepository.findByCategory(category)){
+            dtos.add(modelMapper.map(article, ArticleDto.class));
+        }
+        return dtos;
+    }
+
+    public List<ArticleDto> searchByAuthor(User user) {
+        List<ArticleDto> dtos = new ArrayList<ArticleDto>();
+        for(Article article: articleRepository.findByUser(user)){
+            dtos.add(modelMapper.map(article, ArticleDto.class));
+        }
+        return dtos;
     }
 
 }
