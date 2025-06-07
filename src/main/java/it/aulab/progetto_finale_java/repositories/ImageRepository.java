@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import it.aulab.progetto_finale_java.models.Image;
-import jakarta.transaction.Transactional;
+// import jakarta.transaction.Transactional;
 
 public interface ImageRepository extends JpaRepository<Image,Long>{
-    @Transactional
+    // @Transactional
     @Modifying
     @Query(value = "DELETE FROM images WHERE path = :path", nativeQuery = true)
     void deleteByPath(@Param("path") String path);  
