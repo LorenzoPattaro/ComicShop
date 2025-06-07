@@ -16,6 +16,9 @@ public class CareerRequestServiceImpl implements CareerRequestService {
     @Autowired
     private CareerRequestRepository careerRequestRepository;
 
+    @Autowired
+    private EmailService emailService;
+
     @Transactional
     public boolean isRoleAlreadyAssigned(User user, CareerRequest careerRequest) {
         List<Long> allUserIds = careerRequestRepository.findAllUserIds();
@@ -33,6 +36,9 @@ public class CareerRequestServiceImpl implements CareerRequestService {
         careerRequest.setUser(user);
         careerRequest.setIsChecked(false); // Nota: "isChecked:false" è sintatticamente scorretto in Java standard. Dovrebbe essere "false"
         careerRequestRepository.save(careerRequest);
+
+        //invio mail di richiesta all admin
+        emailService.sendSimpleEmail("adminAulabpost@admin.com", "Richiesta per ruolo: " + careerRequest.getRole().getName(), "C'è una nuova richiesta di colaborazione da parte di " + user.getUsername());
     }
 
     @Override
