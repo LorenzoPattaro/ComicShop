@@ -23,8 +23,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/articles">Tutti gli articoli</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">Link</a>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <div class="d-flex">
+                            <a class="nav-link" href="/admin/dashboard">Dashboard admin</a>
+                        </div>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Accesso</a>

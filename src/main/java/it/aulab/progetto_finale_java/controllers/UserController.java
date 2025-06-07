@@ -18,7 +18,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import it.aulab.progetto_finale_java.dtos.ArticleDto;
 import it.aulab.progetto_finale_java.dtos.UserDto;
 import it.aulab.progetto_finale_java.models.User;
+import it.aulab.progetto_finale_java.repositories.CareerRequestRepository;
 import it.aulab.progetto_finale_java.services.ArticleService;
+import it.aulab.progetto_finale_java.services.CategoryService;
 import it.aulab.progetto_finale_java.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -32,6 +34,12 @@ public class UserController {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private CareerRequestRepository careerRequestRepository;
+
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping("/")
     public String home(Model viewModel) {
@@ -90,4 +98,13 @@ public class UserController {
     public String login() {
         return "auth/login";
     }
+
+    //rotta per la dashboard dell'admin
+     @GetMapping("/admin/dashboard")
+     public String adminDashboard(Model viewModel) {
+        viewModel.addAttribute("title", "Richieste Ricevute");
+        viewModel.addAttribute("requests", careerRequestRepository.findByIsCheckedFalse());
+        viewModel.addAttribute("categories", categoryService.readAll());
+        return "admin/dashboard";
+     }
 }
