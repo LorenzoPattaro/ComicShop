@@ -32,6 +32,15 @@
                             </div>
                         </div>
                     </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_REVISOR')">
+                        <div class="d-flex">
+                            <a class="nav-link" href="/revisor/dashboard">Dashboard revisor</a>
+                            <div class="mt-1" th:if="${articlesToBeRevised > 0}">
+                                <i class="fas fa-bell fa-1 pt-2"></i>
+                                <span class="badge rounded-pill bg-danger text-white px-1" th:text="${articlesToBeRevised}"></span>
+                            </div>
+                        </div>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Accesso</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
