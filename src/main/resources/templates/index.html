@@ -41,6 +41,9 @@
                             </div>
                         </div>
                     </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_WRITER')">
+                        <a class="nav-link" href="/writer/dashboard">Dashboard writer</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Accesso</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
