@@ -44,9 +44,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Accesso</a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li sec:authorize="isAnonymous"><a class="dropdown-item" aria-current="page">Register</a></li>
-                            <li sec:authorize="isAnonymous"><a class="dropdown-item" aria-current="page">Login</a></li>
-                            <li sec:authorize="isAuthenticated"><a class="dropdown-item" aria-current="page">Logout</a></li>
+                            <li sec:authorize="isAnonymous"><a class="dropdown-item" aria-current="page" th:href="@{/register}">Register</a></li>
+                            <li sec:authorize="isAnonymous"><a class="dropdown-item" aria-current="page" th:href="@{/login}">Login</a></li>
+                            <li sec:authorize="isAuthenticated"><a class="dropdown-item" aria-current="page" th:href="@{/logout}">Logout</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -57,7 +57,7 @@
                 </div>
             </div>
         </div>
-        <form class="d-flex">
+        <form class="d-flex" th:action="@{/articles/search}" metod="get">
             <input class="form-control me-2" type="search" placeholder="Search" name="keyword" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
