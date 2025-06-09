@@ -104,6 +104,35 @@ public class ArticleController {
         return "article/detail";
     }
 
+    //rotta di modifica di un articolo
+    @GetMapping("edit/{id}")
+    public String articleEdit(@PathVariable("id") Long id, Model viewModel) {
+        viewModel.addAttribute("title", "Article update");
+        viewModel.addAttribute("article", articleService.read(id));
+        viewModel.addAttribute("categories", categoryService.readAll());
+        return "article/edit";
+    }
+
+    //rotta di memorizzazione modifica di un articolo
+    @PostMapping("/update/{id}") 
+    public String articleUpdate(@PathVariable("id") Long id, @Valid @ModelAttribute("article") Article article, BindingResult result, RedirectAttributes redirectAttributes, Principal principal, MultipartFile file, Model viewModel) {
+
+        //controllo degli errori con le validazioni
+        if (result.hasErrors()) {
+            viewModel.addAttribute("title", "Article update");
+            article.setImage(articleService.read(id).getImage());
+            viewModel.addAttribute("article", article);
+            viewModel.addAttribute("categories", categoryService.readAll());
+            return "article/edit";
+        }
+
+        articleService.update(id, article, file);
+        redirectAttributes.addFlashAttribute("successMessage", "Articolo modificato con successo!");
+
+        return "redirect:/articles";
+    }
+    
+
     //rotta dettaglio di un articolo per il revisore
     @GetMapping("revisor/detail/{id}")
     public String revisorDetailArticle(@PathVariable("id") Long id, Model viewModel) {
