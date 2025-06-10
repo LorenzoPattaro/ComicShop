@@ -115,7 +115,7 @@ public class ArticleController {
 
     //rotta di memorizzazione modifica di un articolo (HO PROVATO AD AGGIUNGERE @RequestParam("image") DAVANTI MULTIPART NEI PARAMETRI)
     @PostMapping("/update/{id}") 
-    public String articleUpdate(@PathVariable("id") Long id, @Valid @ModelAttribute("article") Article article, BindingResult result, RedirectAttributes redirectAttributes, Principal principal, @RequestParam("image") MultipartFile file, Model viewModel) {
+    public String articleUpdate(@PathVariable("id") Long id, @Valid @ModelAttribute("article") Article article, BindingResult result, RedirectAttributes redirectAttributes, Principal principal, MultipartFile file, Model viewModel) {
 
         // controllo degli errori con le validazioni
         if (result.hasErrors()) {
