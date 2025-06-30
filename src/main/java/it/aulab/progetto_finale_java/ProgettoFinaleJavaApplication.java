@@ -8,7 +8,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-
+ 
 @SpringBootApplication
 @EnableAsync(proxyTargetClass = true)
 @EnableTransactionManagement
@@ -17,7 +17,7 @@ public class ProgettoFinaleJavaApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ProgettoFinaleJavaApplication.class, args);
 	}
-
+  
 	@Bean 
 	public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
