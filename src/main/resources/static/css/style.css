@@ -1,0 +1,42 @@
+:root {
+  --primary-color: green;
+  --secondary-color: white;
+  --alternative-color: #f9a3b2;
+  --text-color: #000000;
+  --background-color: white;
+  --border-color: rgb(22, 76, 22);
+}
+
+
+body{
+    background-color: var(--background-color);
+    color: rgb(0, 0, 0);
+}
+
+.navbar{
+    width: 80%;
+    border-radius: 50px;
+    background-color: var(--primary-color);
+    /* color: var(--secondary-color) !important; */
+    margin: auto;
+    border: var(--border-color) 5px solid;
+}
+
+.navbar a {
+  color: var(--secondary-color) !important;
+}
+
+.navbar a:hover {
+  color: var(--alternative-color) !important;
+}
+
+
+.dropdownStyle {
+  background-color: var(--primary-color) !important;
+  border: var(--border-color) 5px solid;
+  
+}
+
+.borderBottom {
+    border-bottom: var(--border-color) 2px solid;
+}
